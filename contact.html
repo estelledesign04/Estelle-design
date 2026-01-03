@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commander - ESTELLE Design</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+    /* Script pour simuler l'envoi du formulaire */
+    function submitForm() {
+        var name = document.getElementById('name').value;
+        if (name) {
+            alert('Merci ' + name + ' ! Votre commande a été enregistrée.\nNous vous contacterons dans les 24h.');
+            document.getElementById('orderForm').reset();
+            return false; // Empêche l'envoi réel
+        }
+        return false;
+    }
+    
+    function updateBudget() {
+        var budget = document.getElementById('budget').value;
+        document.getElementById('budgetValue').textContent = budget + ' €';
+    }
+    
+    // Initialize budget display when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+        updateBudget();
+    });
+</script>
+</head>
+<body>
+    <header class="header">
+   <div class="logo">
+    <img src="logo.png" alt="ESTELLE Design Logo" class="logo-image">
+    <div class="logo-text"> <!-- ADD THIS DIV -->
+        <h1>ESTELLE <span class="design">Design</span></h1>
+        <p class="slogan">Votre boutique en ligne de services design</p>
+    </div>
+</div>
+
+            
+            <nav class="navigation">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html" class="active">Commander</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Passer Commande</h2>
+        <p>Remplissez ce formulaire pour commander un service design.</p>
+
+        <!-- Formulaire de commande -->
+        <form id="orderForm" onsubmit="return submitForm()">
+            <fieldset>
+                <legend><strong>Informations Personnelles</strong></legend>
+                
+                <div class="form-group">
+                    <label for="name">Nom complet *</label>
+                    <input type="text" id="name" name="name" required placeholder="Votre nom et prénom">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Adresse email *</label>
+                    <input type="email" id="email" name="email" required placeholder="exemple@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="0123456789">
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Entreprise (optionnel)</label>
+                    <input type="text" id="company" name="company" placeholder="Nom de votre entreprise">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend><strong>Détails de la Commande</strong></legend>
+                
+                <div class="form-group">
+                    <label>Service souhaité *</label><br>
+                    <input type="radio" id="service1" name="service" value="logo" checked>
+                    <label for="service1">Logo Design (250€)</label><br>
+                    
+                    <input type="radio" id="service2" name="service" value="website">
+                    <label for="service2">Site Web (1200€)</label><br>
+                    
+                    <input type="radio" id="service3" name="service" value="branding">
+                    <label for="service3">Branding Complet (500€)</label><br>
+                    
+                    <input type="radio" id="service4" name="service" value="print">
+                    <label for="service4">Design Print (80€)</label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="budget">Budget estimé : <span id="budgetValue">1000 €</span></label>
+                    <input type="range" id="budget" name="budget" min="100" max="5000" step="100" value="1000" oninput="updateBudget()">
+                </div>
+                
+                <div class="form-group">
+                    <label for="deadline">Délai souhaité</label>
+                    <select id="deadline" name="deadline">
+                        <option value="standard">Standard (2-3 semaines)</option>
+                        <option value="urgent">Urgent (1 semaine) +20%</option>
+                        <option value="custom">Personnalisé (nous contacter)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="colors">Palette de couleurs préférée</label><br>
+                    <input type="color" id="color1" name="color1" value="#FF69B4">
+                    <input type="color" id="color2" name="color2" value="#DB7093">
+                    <input type="color" id="color3" name="color3" value="#C71585">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend><strong>Description du Projet</strong></legend>
+                
+                <div class="form-group">
+                    <label for="description">Décrivez votre projet *</label>
+                    <textarea id="description" name="description" rows="5" required placeholder="Décrivez en détail ce que vous souhaitez...">Je souhaite créer un logo pour ma nouvelle entreprise de...</textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="files">Fichiers joints (optionnel)</label>
+                    <input type="file" id="files" name="files">
+                    <small>Formats acceptés : JPG, PNG, PDF (max 10MB)</small>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <input type="reset" value="Effacer tout" class="btn-secondary">
+                <input type="submit" value="Passer la commande" class="btn-primary">
+            </div>
+        </form>
+
+        <!-- Informations complémentaires -->
+        <section class="order-info">
+            <h3>Comment fonctionne la commande ?</h3>
+            <ol>
+                <li>Vous remplissez le formulaire ci-dessus</li>
+                <li>Nous vous contactons sous 24h pour confirmation</li>
+                <li>Vous recevez un devis détaillé</li>
+                <li>Après paiement, nous commençons le travail</li>
+                <li>Livraison selon le délai choisi</li>
+            </ol>
+            
+            <div class="contact-details">
+                <h4>Questions ? Contactez-nous :</h4>
+                <p>📧 Email : <a href="mailto:contact@estelledesign.com">contact@estelledesign.com</a></p>
+                <p>📞 Téléphone : <a href="tel:+33123456789">0779 60 38 13</a></p>
+                <p>🕒 Horaires : Lundi-Vendredi 9h-18h</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-section">
+                <h4>ESTELLE Design</h4>
+                <p>Votre partenaire design</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <p><a href="index.html">Accueil</a> | <a href="services.html">Services</a> | <a href="contact.html">Commander</a></p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 ESTELLE Design - Projet DAW</p>
+            <p><a href="index.html">Retour à l'accueil</a></p>
+        </div>
+    </footer>
+
+    <input type="range" id="budget" name="budget" min="100" max="5000" step="100" value="1000" oninput="updateBudget()">
+</body>
+</html>
